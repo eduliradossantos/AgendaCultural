@@ -29,6 +29,10 @@ public class User {
     @Column(name = "registration_date")
     private LocalDateTime registrationDate;
 
+    public User(UUID idUser) {
+        this.idUser = idUser;
+    }
+
     // Pode inicializar registrationDate ao criar
     @PrePersist
     public void prePersist() {
