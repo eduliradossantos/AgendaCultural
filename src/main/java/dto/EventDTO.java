@@ -38,7 +38,7 @@ public class EventDTO {
 	}
 
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 
 	public void setTitle(String title) {
@@ -84,11 +84,6 @@ public class EventDTO {
 	public void setCreatedById(UUID createdById) {
 		this.createdById = createdById;
 	}
-
-    public void setIdCategory(Object object) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setIdCategory'");
-    }
     
     
 }

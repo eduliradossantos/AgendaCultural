@@ -32,7 +32,7 @@ public class EventMapper {
         dto.setDescription(event.getDescription());
         dto.setLocation(event.getLocation());
         dto.setDateTime(event.getDateTime());
-        dto.setIdCategory(event.getCategory() != null ? event.getCategory().getIdCategory() : null);
+        dto.setCategoryId(event.getCategory() != null ? event.getCategory().getIdCategory() : null);
         dto.setCreatedById(event.getCreatedBy() != null ? event.getCreatedBy().getIdUser() : null);
 
         return dto;

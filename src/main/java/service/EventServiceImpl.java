@@ -25,8 +25,6 @@ public class EventServiceImpl implements EventService{
 
     @Override
     public EventDTO createEvent(EventDTO eventDTO) {
-        // Aqui você pode validar regras específicas antes de salvar
-
         // Converter DTO para entidade
         Event event = eventMapper.toEntity(eventDTO);
         // Salvar no banco
@@ -53,7 +51,6 @@ public class EventServiceImpl implements EventService{
         event.setTitle(eventDTO.getTitle());
         event.setDateTime(eventDTO.getDateTime());
         event.setLocation(eventDTO.getLocation());
-        // ... outros campos que tiver
 
         // Salvar atualização no banco
         Event updatedEvent = eventRepository.save(event);
