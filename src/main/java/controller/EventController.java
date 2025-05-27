@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import dto.EventDTO;
 import jakarta.validation.Valid;
@@ -24,36 +27,38 @@ import service.EventService;
 public class EventController {
 
     private final EventService eventService;
+    private static final Logger logger = LoggerFactory.getLogger(EventController.class);
 
     public EventController(EventService eventService) {
         this.eventService = eventService;
     }
 
-    // POST - create a new event
     @PostMapping
     public ResponseEntity<EventDTO> createEvent(@Valid @RequestBody EventDTO eventDTO) {
+        logger.info("POST /api/events - Creating event");
         EventDTO createdEvent = eventService.createEvent(eventDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdEvent);
     }
-
-    // GET - search events by name (example of search by parameter other than ID)
+    
     @GetMapping("/search")
     public ResponseEntity<List<EventDTO>> searchByName(@RequestParam String name) {
+        logger.info("GET /api/events/search?name={} - Searching events", name);
         List<EventDTO> events = eventService.searchEventsByName(name);
         return ResponseEntity.ok(events);
     }
-
-    // PUT - update event by id
+    
     @PutMapping("/{id}")
     public ResponseEntity<EventDTO> updateEvent(@PathVariable UUID id, @Valid @RequestBody EventDTO eventDTO) {
+        logger.info("PUT /api/events/{} - Updating event", id);
         EventDTO updatedEvent = eventService.updateEvent(id, eventDTO);
         return ResponseEntity.ok(updatedEvent);
     }
-
-    // DELETE - delete event by id
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEvent(@PathVariable UUID id) {
+        logger.info("DELETE /api/events/{} - Deleting event", id);
         eventService.deleteEvent(id);
         return ResponseEntity.noContent().build();
     }
+    
 }

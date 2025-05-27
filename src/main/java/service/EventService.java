@@ -13,5 +13,5 @@ public interface EventService {
     EventDTO getEventById(UUID id);
     List<EventDTO> getAllEvents();
 
-
 }
+
